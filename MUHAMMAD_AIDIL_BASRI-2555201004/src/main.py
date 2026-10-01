@@ -4,7 +4,7 @@ from src.mahasiswa import Mahasiswa
 
 
 def main() -> None:
-    saya = Mahasiswa("Budi Santoso", "2410123456", "Kuok")
+    saya = Mahasiswa("Muhammad Aidil Basri", "2555201004", "bangkinang")
     print(saya.perkenalan())
 
 
