@@ -30,14 +30,12 @@ def main() -> None:
     print(siti.kontak())
     print(traktor.keterangan())
 
-    print("\n--- Percobaan menembus penjagaan ---")
-    for tarif in (0, -5000):
-        try:
-            traktor.tarif_harian = tarif
-        except ValueError as galat:
-            print(f"Ditolak (tarif {'nol' if tarif == 0 else 'minus'}): {galat}")
+   
+    print("\n--- Memeriksa tarif tanpa membuat objek ---")
 
-    print(f"Tarif tetap utuh: {traktor.keterangan()}")
+    for calon in (5_000, 150_000, 6_000_000):
+        status = "wajar" if AlatTani.tarif_wajar(calon) else "ditolak"
+        print(f" {AlatTani.format_rupiah(calon):>14} → {status}")
 
 
 if __name__ == "__main__":
