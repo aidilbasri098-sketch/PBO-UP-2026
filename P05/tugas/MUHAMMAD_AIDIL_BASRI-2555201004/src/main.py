@@ -1,6 +1,9 @@
 """Contoh menjalankan aplikasi SIPALA dari terminal."""
 
-from src.model import Alamat, AlatTani, Penyewa, Sewa
+from src.model.alamat import Alamat
+from src.model.alat_tani import AlatTani
+from src.model.penyewa import Penyewa
+from src.model.sewa import Sewa
 
 
 def main() -> None:
