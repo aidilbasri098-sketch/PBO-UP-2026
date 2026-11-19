@@ -1,4 +1,3 @@
-
 """Interpreter perintah konsol untuk daftar harga alat pertanian."""
 
 from typing import Final
@@ -10,7 +9,8 @@ BANTUAN: Final[str] = (
     "  bantuan              Menampilkan bantuan\n"
     "  daftar <hari>        Menampilkan semua harga sewa\n"
     "  harga <kode> <hari>  Menampilkan harga satu alat\n"
-    "  termurah <hari>      Menampilkan alat termurah"
+    "  termurah <hari>      Menampilkan alat termurah\n"
+    "  total <hari>         Menampilkan total biaya semua alat"
 )
 
 
@@ -32,15 +32,20 @@ class PerintahKonsol:
             case ["bantuan"] | ["?"]:
                 hasil = BANTUAN
 
-            case ["daftar", hari] if hari.isdigit():
+            case ["daftar", hari] if hari.isdigit() and int(hari) > 0:
                 hasil = self._daftar.tabel(int(hari))
 
-            case ["harga", kode, hari] if hari.isdigit():
+            case ["harga", kode, hari] if hari.isdigit() and int(hari) > 0:
                 hasil = self._harga_satu_alat(kode.upper(), int(hari))
 
-            case ["termurah", hari] if hari.isdigit():
+            case ["termurah", hari] if hari.isdigit() and int(hari) > 0:
                 alat = self._daftar.termurah(int(hari))
                 hasil = f"Termurah untuk {hari} hari: {alat.nama}"
+
+            case ["total", hari] if hari.isdigit() and int(hari) > 0:
+                total = self._daftar.total_bila_semua_disewa(int(hari))
+                rupiah = f"Rp{total:,}".replace(",", ".")
+                hasil = f"Total biaya untuk {hari} hari: {rupiah}"
 
             case [perintah_pertama, *_]:
                 hasil = (

@@ -10,3 +10,10 @@ from src.model.perontok import Perontok as Perontok
 from src.model.pompa_air import PompaAir as PompaAir
 from src.model.sewa import Sewa as Sewa
 from src.model.traktor import Traktor as Traktor
+
+from src.model.pegawai import Pegawai as Pegawai
+from src.model.pegawai import PegawaiHarian as PegawaiHarian
+from src.model.pegawai import PegawaiProduksi as PegawaiProduksi
+from src.model.pegawai import PegawaiTetap as PegawaiTetap
+
+from src.model.penyusun_laporan import PenyusunLaporan as PenyusunLaporan

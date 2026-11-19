@@ -1,4 +1,4 @@
-
+﻿
 """Pengujian interpreter perintah konsol."""
 
 from src.model import DaftarHarga, Perontok, PompaAir, Traktor
@@ -57,3 +57,13 @@ def test_perintah_tidak_dikenal() -> None:
 def test_format_perintah_tidak_valid() -> None:
     hasil = buat_konsol().jalankan("daftar satu dua")
     assert hasil == "Perintah 'daftar' tidak dikenal. Ketik 'bantuan'."
+
+def test_perintah_total() -> None:
+    hasil = buat_konsol().jalankan("total 3")
+    assert hasil == "Total biaya untuk 3 hari: Rp1.953.000"
+
+
+def test_perintah_total_hari_nol_ditolak() -> None:
+    hasil = buat_konsol().jalankan("total 0")
+    assert hasil == "Perintah 'total' tidak dikenal. Ketik 'bantuan'."
+
