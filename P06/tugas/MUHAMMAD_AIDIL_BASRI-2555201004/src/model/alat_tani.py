@@ -8,6 +8,8 @@ class AlatTani:
 
     TARIF_MINIMUM: Final[int] = 10_000
     TARIF_MAKSIMUM: Final[int] = 5_000_000
+    PEMISAH_BARIS: Final[str] = ";"
+    JUMLAH_KOLOM_CSV: Final[int] = 4
     _jumlah_terdaftar: int = 0
 
     def __init__(self, kode: str, nama: str, tarif_harian: int) -> None:

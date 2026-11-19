@@ -36,6 +36,25 @@ class Perontok(AlatTani):
 
     def biaya_sewa(self, jumlah_hari: int) -> int:
         return super().biaya_sewa(self.hari_ditagih(jumlah_hari))
+    @classmethod
+    def dari_baris_csv(cls, baris: str) -> Perontok:
+        """Membuat perontok dari kode;nama;tarif;kapasitas."""
+        bagian = baris.strip().split(cls.PEMISAH_BARIS)
+
+        if len(bagian) != cls.JUMLAH_KOLOM_CSV:
+            raise ValueError("baris perontok harus berisi 4 bagian")
+
+        kode, nama, tarif, kapasitas = bagian
+
+        try:
+            return cls(
+                kode.strip(),
+                nama.strip(),
+                int(tarif.strip()),
+                int(kapasitas.strip()),
+            )
+        except ValueError as kesalahan:
+            raise ValueError("data perontok tidak valid") from kesalahan
 
     def keterangan(self) -> str:
         return (

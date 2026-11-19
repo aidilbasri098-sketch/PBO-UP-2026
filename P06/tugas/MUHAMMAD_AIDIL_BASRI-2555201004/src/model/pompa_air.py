@@ -41,6 +41,25 @@ class PompaAir(AlatTani):
             * jumlah_hari
         )
         return dasar + biaya_solar
+    @classmethod
+    def dari_baris_csv(cls, baris: str) -> PompaAir:
+        """Membuat pompa dari kode;nama;tarif;debit."""
+        bagian = baris.strip().split(cls.PEMISAH_BARIS)
+
+        if len(bagian) != cls.JUMLAH_KOLOM_CSV:
+            raise ValueError("baris pompa harus berisi 4 bagian")
+
+        kode, nama, tarif, debit = bagian
+
+        try:
+            return cls(
+                kode.strip(),
+                nama.strip(),
+                int(tarif.strip()),
+                int(debit.strip()),
+            )
+        except ValueError as kesalahan:
+            raise ValueError("data pompa tidak valid") from kesalahan
 
     def keterangan(self) -> str:
         return (
